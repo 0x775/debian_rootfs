@@ -46,6 +46,8 @@ if [ ! -d "/opt/rootfs" ]; then
 		mount -t devtmpfs none /dev
 		mount -t proc none /proc
 		mount -t sysfs none /sys
+		ifup eth0
+		/etc/init.d/ssh restart
 		setsid /bin/bash
 EOF
 	chmod a+x /opt/rootfs/init
@@ -78,7 +80,7 @@ EOF
 	echo "Debian" >/proc/sys/kernel/hostname
 	
 	#安装软件
-	#TODO..
+	#apt-get install -y openssh-server ntpdate resolvconf sudo ntp
 	
 	#配置网络
 	mkdir -p /etc/network
@@ -105,3 +107,7 @@ EOF
 }
 
 #config_system
+
+
+#last
+#qemu-system-x86_64 -kernel bzImage -initrd rootfs.gz -m 2G -nographic -append "console=ttyS0"
