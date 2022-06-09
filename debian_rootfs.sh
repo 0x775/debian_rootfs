@@ -73,6 +73,10 @@ function config_system(){
 	deb http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib
 	deb-src http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib
 EOF
+	#hostname
+	echo "Debian" >/etc/hostname
+	echo "Debian" >/proc/sys/kernel/hostname
+	
 	#安装软件
 	#TODO..
 	
